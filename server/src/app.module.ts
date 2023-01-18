@@ -8,6 +8,12 @@ import { HomeEntity } from './common/entities/home.entity';
 import { LayoutEntity } from './common/entities/layout.entity';
 import { LinkListEntity } from './common/entities/link-list';
 import { LinkEntity } from './common/entities/link.entity';
+import { ArticleInfoModule } from './modules/article-info/article-info.module';
+import { ArticleIntroductionModule } from './modules/article-introduction/article-introduction.module';
+import { HomeModule } from './modules/home/home.module';
+import { LayoutModule } from './modules/layout/layout.module';
+import { LinkModule } from './modules/link/link.module';
+import { LinkListModule } from './modules/link-list/link-list.module';
 
 const entities = [
   ArticleInfoEntity,
@@ -16,6 +22,15 @@ const entities = [
   LayoutEntity,
   LinkEntity,
   LinkListEntity,
+];
+
+const modules = [
+  ArticleInfoModule,
+  ArticleIntroductionModule,
+  HomeModule,
+  LayoutModule,
+  LinkModule,
+  LinkListModule,
 ];
 
 @Module({
@@ -31,6 +46,7 @@ const entities = [
       synchronize: true,
       entities: [...entities],
     }),
+    ...modules,
   ],
   controllers: [AppController],
   providers: [AppService],
