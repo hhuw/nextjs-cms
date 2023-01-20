@@ -1,8 +1,10 @@
-import { Controller, Get, Query } from '@nestjs/common';
+import { Controller, Get, Query, UseGuards } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { ArticleInfoService } from './article-info.service';
 
-@ApiTags('文章信息')
+@ApiTags('article-info')
+@UseGuards(JwtAuthGuard)
 @Controller('article-info')
 export class ArticleInfoController {
   constructor(private readonly articleInfoService: ArticleInfoService) {}

@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { LinkListEntity } from './link-list';
 
 @Entity('layout')
 export class LayoutEntity {
@@ -23,6 +24,6 @@ export class LayoutEntity {
   @Column()
   public_number: string;
 
-  // @Column()一对多
-  // link_lists: string;
+  @OneToMany(() => LinkListEntity, (linkList) => linkList.layout)
+  link_lists: LinkListEntity[];
 }

@@ -1,4 +1,11 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { LayoutEntity } from './layout.entity';
 import { LinkEntity } from './link.entity';
 
 @Entity('linkList')
@@ -9,6 +16,9 @@ export class LinkListEntity {
   @Column()
   title: string;
 
-  @OneToMany((type) => LinkEntity, (link) => link.linkList) // note: we will create author property in the Photo class below
+  @OneToMany(() => LinkEntity, (link) => link.linkList)
   links: LinkEntity[];
+
+  @ManyToOne(() => LayoutEntity, (layout) => layout.link_lists)
+  layout: LayoutEntity;
 }

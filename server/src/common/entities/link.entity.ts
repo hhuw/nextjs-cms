@@ -12,6 +12,6 @@ export class LinkEntity {
   @Column()
   link: string;
 
-  @ManyToOne((type) => LinkListEntity, (linkList) => linkList.links)
+  @ManyToOne(() => LinkListEntity, (linkList) => linkList.links)
   linkList: LinkListEntity;
 }

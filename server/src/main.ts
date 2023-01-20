@@ -8,7 +8,13 @@ async function bootstrap() {
     .setTitle('CMS API')
     .setDescription('API接口')
     .setVersion('1.0.0')
-    .addTag('文章信息') // 对应着@ApiTags
+    .addTag('auth')
+    .addTag('article-info')
+    .addTag('article-introduction')
+    .addTag('home')
+    .addTag('layout')
+    .addTag('link')
+    .addTag('link-list')
     .setBasePath('http://localhost:3000')
     .build();
   const document = SwaggerModule.createDocument(app, options);

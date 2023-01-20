@@ -1,6 +1,4 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ArticleInfoEntity } from './common/entities/article-info.entity';
 import { ArticleIntroductionsEntity } from './common/entities/article-introductions.entity';
@@ -14,6 +12,9 @@ import { HomeModule } from './modules/home/home.module';
 import { LayoutModule } from './modules/layout/layout.module';
 import { LinkModule } from './modules/link/link.module';
 import { LinkListModule } from './modules/link-list/link-list.module';
+import { AuthModule } from './modules/auth/auth.module';
+import { PassportModule } from '@nestjs/passport';
+import { UserEntity } from './common/entities/user.entity';
 
 const entities = [
   ArticleInfoEntity,
@@ -22,9 +23,11 @@ const entities = [
   LayoutEntity,
   LinkEntity,
   LinkListEntity,
+  UserEntity,
 ];
 
 const modules = [
+  AuthModule,
   ArticleInfoModule,
   ArticleIntroductionModule,
   HomeModule,
@@ -47,8 +50,9 @@ const modules = [
       entities: [...entities],
     }),
     ...modules,
+    PassportModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}
