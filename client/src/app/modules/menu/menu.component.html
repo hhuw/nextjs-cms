@@ -1,0 +1,73 @@
+<nz-layout class="app-layout">
+  <nz-sider class="menu-sidebar" nzCollapsible nzWidth="200px" nzBreakpoint="md" [(nzCollapsed)]="isCollapsed"
+    [nzTrigger]="null">
+    <div class="sidebar-logo">
+      <a routerLink="/index" target="_blank">
+        <img src="https://ng.ant.design/assets/img/logo.svg" alt="logo">
+        <h1>Ant Design Of Angular</h1>
+      </a>
+    </div>
+    <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+      <li nz-submenu nzOpen nzTitle="Dashboard" nzIcon="dashboard">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/index">index</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/welcome">Welcome</a>
+          </li>
+        </ul>
+      </li>
+      <li nz-submenu nzOpen nzTitle="Staff" nzIcon="form">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/staff/list">list</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/staff/insert">insert</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </nz-sider>
+  <nz-layout>
+    <nz-header>
+      <div class="app-header">
+        <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
+          <i class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></i>
+        </span>
+        <span class="right-btn" (click)="toggleCard()" #toggleButton>
+          <nz-avatar [nzText]="avatarText"></nz-avatar>
+        </span>
+        <nz-card *ngIf="isCardOpen" [nzCover]="coverTemplate" [nzActions]="[actionSetting, actionEdit, actionEllipsis]">
+          <!-- <nz-card-meta [nzTitle]="employee?.accountName!" [nzDescription]="employee?.position!"
+            [nzAvatar]="avatarTemplate"></nz-card-meta> -->
+        </nz-card>
+        <ng-template #avatarTemplate>
+          <nz-avatar [nzText]="avatarText"></nz-avatar>
+        </ng-template>
+        <ng-template #coverTemplate>
+          <img alt="example" src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png" />
+        </ng-template>
+        <ng-template #actionSetting>
+          <span (click)="onInfo()">
+            <i class="fa fa-address-card-o" aria-hidden="true"></i>
+          </span>
+        </ng-template>
+        <ng-template #actionEdit>
+          <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+        </ng-template>
+        <ng-template #actionEllipsis>
+          <span (click)="logout()">
+            <i class="fa fa-sign-out" aria-hidden="true"></i>
+          </span>
+        </ng-template>
+      </div>
+    </nz-header>
+    <nz-content>
+      <div class="inner-content">
+        <router-outlet></router-outlet>
+      </div>
+    </nz-content>
+  </nz-layout>
+</nz-layout>
